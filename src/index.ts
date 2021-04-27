@@ -6,6 +6,9 @@ import { typeDefs } from "./graphql/typeDefs/test";
 const apolloServer = new ApolloServer({
 	resolvers,
 	typeDefs,
+	playground: {
+		endpoint: "/dev/graphql",
+	},
 });
 
 export const graphqlHandler = apolloServer.createHandler();
