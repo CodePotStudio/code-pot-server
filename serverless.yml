@@ -18,6 +18,7 @@ functions:
 plugins:
   - serverless-webpack
   - serverless-offline
+  - serverless-dotenv-plugin
 custom:
   webpack:
     includeModules: true
