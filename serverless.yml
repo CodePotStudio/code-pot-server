@@ -17,6 +17,10 @@ functions:
           cors: true
 plugins:
   - serverless-webpack
+  - serverless-offline
 custom:
   webpack:
     includeModules: true
+    custom:
+  serverless-offline:
+    httpPort: 4000
