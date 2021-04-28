@@ -10,6 +10,7 @@ import {
 	APIGatewayProxyEventV2 as LambdaEvent,
 	APIGatewayProxyEventHeaders as LambdaHeader,
 } from "aws-lambda";
+import cookie from "cookie";
 
 const schema = makeExecutableSchema({
 	typeDefs,
@@ -25,6 +26,7 @@ const setContext = async ({
 	return {
 		prisma,
 		user: await getUser(event.headers),
+		cookies: cookie.parse(event.headers.Cookie || ""),
 	};
 };
 
