@@ -1,3 +1,4 @@
 import user from "./user.resolvers";
-const resolverArray = [user];
+import me from "./me.resolvers";
+const resolverArray = [user, me];
 export default resolverArray;
