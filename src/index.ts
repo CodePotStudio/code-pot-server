@@ -1,6 +1,6 @@
 import { ApolloServer } from "apollo-server-lambda";
-import { resolvers } from "./graphql/resolvers/test";
-import { typeDefs } from "./graphql/typeDefs/test";
+import resolvers from "./graphql/resolvers";
+import typeDefs from "./graphql/typeDefs";
 
 const apolloServer = new ApolloServer({
 	resolvers,

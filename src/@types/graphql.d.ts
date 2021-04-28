@@ -43,6 +43,12 @@ export type Profile = {
 export type Query = {
   __typename?: 'Query';
   me?: Maybe<Me>;
+  user?: Maybe<User>;
+};
+
+
+export type QueryUserArgs = {
+  id: Scalars['Int'];
 };
 
 export type User = {
@@ -150,8 +156,8 @@ export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Profile: ResolverTypeWrapper<Profile>;
   Query: ResolverTypeWrapper<{}>;
-  User: ResolverTypeWrapper<User>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
+  User: ResolverTypeWrapper<User>;
   accessToken: ResolverTypeWrapper<AccessToken>;
   me: ResolverTypeWrapper<Me>;
 };
@@ -163,8 +169,8 @@ export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'];
   Profile: Profile;
   Query: {};
-  User: User;
   Int: Scalars['Int'];
+  User: User;
   accessToken: AccessToken;
   me: Me;
 };
@@ -185,6 +191,7 @@ export type ProfileResolvers<ContextType = any, ParentType extends ResolversPare
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   me?: Resolver<Maybe<ResolversTypes['me']>, ParentType, ContextType>;
+  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUserArgs, 'id'>>;
 };
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
