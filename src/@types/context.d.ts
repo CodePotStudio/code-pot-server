@@ -1,8 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import { Request, Response } from "express";
+import { User } from "./user";
 
 export interface Context {
 	prisma: PrismaClient;
-	req: Request;
-	res: Response;
+	user: User | null;
 }
