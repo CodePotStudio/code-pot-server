@@ -4,18 +4,22 @@
 	"description": "code pot back-end server",
 	"main": "index.js",
 	"scripts": {
-		"start:local": "NODE_ENV=local serverless offline start",
+		"start:local": "serverless offline start",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"deploy:dev": "serverless deploy --stage development",
-		"deploy:prod": "serverless deploy --stage prod"
+		"deploy:prod": "serverless deploy --stage prod",
+		"migrate:local": "dotenv -e .env.local -- npx prisma migrate dev"
 	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"@prisma/client": "^2.21.2",
 		"apollo-server-lambda": "^2.23.0",
 		"graphql": "^15.5.0"
 	},
 	"devDependencies": {
+		"dotenv-cli": "^4.0.0",
+		"prisma": "^2.21.2",
 		"serverless-dotenv-plugin": "^3.9.0",
 		"serverless-offline": "^6.9.0",
 		"serverless-webpack": "^5.4.1",
