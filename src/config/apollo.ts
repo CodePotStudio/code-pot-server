@@ -6,22 +6,29 @@ import { PrismaClient } from "@prisma/client";
 import { Context } from "../@types/context";
 import jwt from "jsonwebtoken";
 import { environment } from ".";
+import {
+	APIGatewayProxyEventV2 as LambdaEvent,
+	APIGatewayProxyEventHeaders as LambdaHeader,
+} from "aws-lambda";
 
 const schema = makeExecutableSchema({
 	typeDefs,
 	resolvers,
 });
 
-const setContext = async ({ event }: any): Promise<Context> => {
+const setContext = async ({
+	event,
+}: {
+	event: LambdaEvent;
+}): Promise<Context> => {
 	const prisma = new PrismaClient();
-	const context = {
+	return {
 		prisma,
 		user: await getUser(event.headers),
 	};
-	return context;
 };
 
-async function getUser(headers: any) {
+async function getUser(headers: LambdaHeader) {
 	const prisma = new PrismaClient();
 	const header = headers.authorization || "";
 	if (header) {
