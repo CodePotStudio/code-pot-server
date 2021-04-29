@@ -1,4 +1,5 @@
-service: code-pot-server
+org: toycrane
+service: codepot-backend
 provider:
   name: aws
   runtime: nodejs12.x
@@ -22,6 +23,14 @@ plugins:
 custom:
   webpack:
     includeModules: true
-    custom:
+    packager: "yarn"
+    packagerOptions:
+      scripts: # this is the magic
+        - prisma generate
   serverless-offline:
     httpPort: 4000
+# only include the Prisma binary required on AWS Lambda while packaging
+package:
+  patterns:
+    - "!node_modules/.prisma/client/query-engine-*"
+    - "node_modules/.prisma/client/query-engine-rhel-*"
