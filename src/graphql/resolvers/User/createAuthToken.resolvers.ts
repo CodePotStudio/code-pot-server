@@ -21,7 +21,13 @@ const resolver: Resolvers = {
 
 			if (!user) {
 				// refresh token 삭제
-				setCookies.push({ name: "refreshToken", value: "" });
+				setCookies.push({
+					name: "refreshToken",
+					value: "",
+					options: {
+						maxAge: 0,
+					},
+				});
 				throw new ApolloError(
 					"유효하지 않은 refresh token입니다.",
 					"INVALID_REFRESH_TOKEN"
@@ -37,7 +43,6 @@ const resolver: Resolvers = {
 					httpOnly: true,
 					// 6시간 동안 유효하도록 처리
 					maxAge: 6 * 60 * 60 * 1000,
-					path: "/",
 				},
 			});
 			// 새로운 토큰 DB에 저장
