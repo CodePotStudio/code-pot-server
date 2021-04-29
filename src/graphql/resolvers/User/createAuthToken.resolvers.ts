@@ -1,4 +1,4 @@
-import { ApolloError } from "apollo-server";
+import { ApolloError } from "apollo-server-lambda";
 import { Resolvers } from "../../../@types/graphql";
 import { createJWTToken, createRefreshToken } from "../../../utils/auth";
 

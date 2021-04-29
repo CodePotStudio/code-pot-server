@@ -18,12 +18,13 @@ const schema = makeExecutableSchema({
 	resolvers,
 });
 
+const prisma = new PrismaClient();
+
 const setContext = async ({
 	event,
 }: {
 	event: LambdaEvent;
 }): Promise<Context> => {
-	const prisma = new PrismaClient();
 	return {
 		prisma,
 		user: await getUser(event.headers),
@@ -33,7 +34,6 @@ const setContext = async ({
 };
 
 async function getUser(headers: LambdaHeader) {
-	const prisma = new PrismaClient();
 	const header = headers.authorization || "";
 	if (header) {
 		const token = header.replace("Bearer ", "");
