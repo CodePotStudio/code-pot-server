@@ -7,4 +7,5 @@ export interface Context {
 	cookies?: {
 		[key: string]: string;
 	};
+	setCookies: { name?: string; value?: string; options?: {} }[];
 }

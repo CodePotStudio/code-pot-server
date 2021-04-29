@@ -11,6 +11,7 @@ import {
 	APIGatewayProxyEventHeaders as LambdaHeader,
 } from "aws-lambda";
 import cookie from "cookie";
+import customHeadersPlugin from "../plugins/customHeadersPlugin";
 
 const schema = makeExecutableSchema({
 	typeDefs,
@@ -27,6 +28,7 @@ const setContext = async ({
 		prisma,
 		user: await getUser(event.headers),
 		cookies: cookie.parse(event.headers.Cookie || ""),
+		setCookies: [],
 	};
 };
 
@@ -48,6 +50,7 @@ async function getUser(headers: LambdaHeader) {
 const ApolloConfig: Config = {
 	schema: schema,
 	context: setContext,
+	plugins: [customHeadersPlugin],
 	playground: {
 		endpoint: "/dev/graphql",
 		settings: {
