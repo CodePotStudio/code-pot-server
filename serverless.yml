@@ -6,6 +6,7 @@ provider:
   region: ap-northeast-2
 functions:
   graphql:
+    name: ${sls:stage}-graphqlServer
     handler: src/index.graphqlHandler
     events:
       - http:
@@ -16,6 +17,12 @@ functions:
           path: graphql
           method: get
           cors: true
+  express:
+    name: ${sls:stage}-expressServer
+    handler: src/expressServer.expressHandler
+    events:
+      - http: ANY /
+      - http: "ANY {proxy+}"
 plugins:
   - serverless-webpack
   - serverless-offline
@@ -29,6 +36,7 @@ custom:
         - prisma generate
   serverless-offline:
     httpPort: 4000
+    noPrependStageInUrl: true
 # only include the Prisma binary required on AWS Lambda while packaging
 package:
   patterns:
