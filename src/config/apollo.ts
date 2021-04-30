@@ -37,7 +37,6 @@ const setContext = async ({
 
 async function getUser(headers: LambdaHeader) {
 	const header = headers.authorization || "";
-	console.log(headers);
 	if (header) {
 		const token = header.replace("Bearer ", "");
 		try {

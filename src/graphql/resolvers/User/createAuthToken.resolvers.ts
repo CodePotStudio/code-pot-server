@@ -6,7 +6,6 @@ const resolver: Resolvers = {
 	Mutation: {
 		createAuthToken: async (_, __, { prisma, cookies, setCookies }) => {
 			const refreshToken = cookies ? cookies["refreshToken"] : null;
-			console.log(cookies);
 			if (!refreshToken) {
 				throw new ApolloError(
 					"refresh token이 없습니다.",
