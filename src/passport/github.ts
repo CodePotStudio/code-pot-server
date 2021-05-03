@@ -1,7 +1,7 @@
 import passport from "passport";
 import { environment } from "../config";
 import { createRefreshToken } from "../utils/auth";
-import { PrismaClient } from ".prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 const GITHUB_CONFIG = {
 	clientID: environment.githubClientID,
