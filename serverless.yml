@@ -29,16 +29,12 @@ plugins:
   - serverless-dotenv-plugin
 custom:
   webpack:
+    webpackConfig: "webpack.config.js"
     includeModules: true
     packager: "yarn"
     packagerOptions:
-      scripts: # this is the magic
+      scripts: # build 후에 client 초기화
         - prisma generate
   serverless-offline:
     httpPort: 4000
     noPrependStageInUrl: true
-# only include the Prisma binary required on AWS Lambda while packaging
-package:
-  patterns:
-    - "!node_modules/.prisma/client/query-engine-*"
-    - "node_modules/.prisma/client/query-engine-rhel-*"

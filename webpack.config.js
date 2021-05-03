@@ -16,6 +16,7 @@ module.exports = {
 		],
 	},
 	node: false,
+	// node package를 bundling에서 제외하기
 	externals: [nodeExternals()],
 	// Generate sourcemaps for proper error messages
 	devtool: "source-map",
@@ -32,9 +33,7 @@ module.exports = {
 	target: "node",
 	plugins: [
 		new CopyWebpackPlugin({
-			patterns: [
-				{ from: "./prisma/schema.prisma" }, // without this the prisma generate above will not work
-			],
+			patterns: ["./prisma/schema.prisma"],
 		}),
 	],
 };
