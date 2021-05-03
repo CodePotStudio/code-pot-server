@@ -66,7 +66,7 @@ const ApolloConfig: Config = {
 	context: setContext,
 	plugins: [customHeadersPlugin],
 	playground: {
-		endpoint: "/dev/graphql",
+		endpoint: "/graphql",
 		settings: {
 			"request.credentials": "include",
 		},
