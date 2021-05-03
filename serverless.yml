@@ -6,7 +6,7 @@ provider:
   region: ap-northeast-2
 functions:
   graphql:
-    name: ${sls:stage}-graphqlServer
+    name: ${sls:stage}-graphql-server
     handler: src/index.graphqlHandler
     events:
       - http:
@@ -18,7 +18,7 @@ functions:
           method: get
           cors: true
   express:
-    name: ${sls:stage}-expressServer
+    name: ${sls:stage}-express-server
     handler: src/expressServer.expressHandler
     events:
       - http: ANY /
