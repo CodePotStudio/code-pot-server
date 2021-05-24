@@ -20,8 +20,8 @@ model User {
   id           Int      @id @default(autoincrement())
   email        String   @unique
   name         String?
+  githubId     Int?
   isActive     Boolean  @default(false)
-  githubId     String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @default(now()) @updatedAt
   refreshToken String?  @unique

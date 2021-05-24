@@ -14,7 +14,7 @@ const resolver: Resolvers = {
 						"이미 다른 소셜 로그인으로 회원 가입이 되어있는 이메일입니다."
 					);
 				}
-				throw new Error("이미 회원 가입이 되어있는 이메일입니다.");
+				return userExists;
 			} else {
 				try {
 					// 회원 가입 시, 유저 생성

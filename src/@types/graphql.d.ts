@@ -38,8 +38,8 @@ export type MutationActivateUserArgs = {
 
 export type MutationCreateUserArgs = {
   email: Scalars['String'];
-  avatar: Scalars['String'];
-  githubId: Scalars['String'];
+  avatar?: Maybe<Scalars['String']>;
+  githubId: Scalars['Int'];
 };
 
 export type Profile = {
@@ -162,9 +162,9 @@ export type ResolversTypes = {
   Mutation: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
   Profile: ResolverTypeWrapper<Profile>;
   Query: ResolverTypeWrapper<{}>;
-  Int: ResolverTypeWrapper<Scalars['Int']>;
   User: ResolverTypeWrapper<User>;
   accessToken: ResolverTypeWrapper<AccessToken>;
   me: ResolverTypeWrapper<Me>;
@@ -175,9 +175,9 @@ export type ResolversParentTypes = {
   Mutation: {};
   String: Scalars['String'];
   Boolean: Scalars['Boolean'];
+  Int: Scalars['Int'];
   Profile: Profile;
   Query: {};
-  Int: Scalars['Int'];
   User: User;
   accessToken: AccessToken;
   me: Me;
@@ -188,7 +188,7 @@ export type MutationResolvers<ContextType = Context, ParentType extends Resolver
   activateUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationActivateUserArgs, 'mobile' | 'name'>>;
   logout?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   createAuthToken?: Resolver<Maybe<ResolversTypes['accessToken']>, ParentType, ContextType>;
-  createUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'email' | 'avatar' | 'githubId'>>;
+  createUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'email' | 'githubId'>>;
 };
 
 export type ProfileResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Profile'] = ResolversParentTypes['Profile']> = {

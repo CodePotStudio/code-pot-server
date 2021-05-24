@@ -35,7 +35,7 @@ const typeDefs = gql`
 		activateUser(mobile: String!, name: String!): User!
 		logout: Boolean
 		createAuthToken: accessToken
-		createUser(email: String!, avatar: String!, githubId: String!): User!
+		createUser(email: String!, avatar: String, githubId: Int!): User!
 	}
 `;
 
