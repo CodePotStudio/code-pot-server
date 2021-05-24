@@ -20,7 +20,6 @@ const githubCallback = async (req: any, res: any) => {
 	const githubId = req.user.id;
 	const photo = req.user.photos[0].value;
 	const email = req.user.emails[0].value;
-	const githubUrl = req.user.profileUrl;
 	let user;
 	const userExists = await prisma.user.findUnique({
 		where: {
@@ -55,7 +54,6 @@ const githubCallback = async (req: any, res: any) => {
 					profile: {
 						create: {
 							avatar: photo,
-							githubUrl: githubUrl,
 						},
 					},
 				},

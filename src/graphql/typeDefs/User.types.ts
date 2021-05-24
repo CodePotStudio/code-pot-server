@@ -14,7 +14,6 @@ const typeDefs = gql`
 	type Profile {
 		avatar: String
 		bio: String
-		githubUrl: String
 	}
 
 	type me {
@@ -36,6 +35,7 @@ const typeDefs = gql`
 		activateUser(mobile: String!, name: String!): User!
 		logout: Boolean
 		createAuthToken: accessToken
+		createUser(email: String!, avatar: String!, githubId: String!): User!
 	}
 `;
 

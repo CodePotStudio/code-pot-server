@@ -20,6 +20,7 @@ export type Mutation = {
   activateUser: User;
   logout?: Maybe<Scalars['Boolean']>;
   createAuthToken?: Maybe<AccessToken>;
+  createUser: User;
 };
 
 
@@ -34,11 +35,17 @@ export type MutationActivateUserArgs = {
   name: Scalars['String'];
 };
 
+
+export type MutationCreateUserArgs = {
+  email: Scalars['String'];
+  avatar: Scalars['String'];
+  githubId: Scalars['String'];
+};
+
 export type Profile = {
   __typename?: 'Profile';
   avatar?: Maybe<Scalars['String']>;
   bio?: Maybe<Scalars['String']>;
-  githubUrl?: Maybe<Scalars['String']>;
 };
 
 export type Query = {
@@ -181,12 +188,12 @@ export type MutationResolvers<ContextType = Context, ParentType extends Resolver
   activateUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationActivateUserArgs, 'mobile' | 'name'>>;
   logout?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   createAuthToken?: Resolver<Maybe<ResolversTypes['accessToken']>, ParentType, ContextType>;
+  createUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'email' | 'avatar' | 'githubId'>>;
 };
 
 export type ProfileResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Profile'] = ResolversParentTypes['Profile']> = {
   avatar?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   bio?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  githubUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 

@@ -9,12 +9,11 @@ generator client {
 }
 
 model Profile {
-  id        Int     @id @default(autoincrement())
-  bio       String?
-  userId    Int     @unique
-  avatar    String?
-  githubUrl String
-  user      User    @relation(fields: [userId], references: [id])
+  id     Int     @id @default(autoincrement())
+  bio    String?
+  userId Int     @unique
+  avatar String?
+  user   User    @relation(fields: [userId], references: [id])
 }
 
 model User {
