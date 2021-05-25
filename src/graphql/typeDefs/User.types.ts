@@ -25,6 +25,11 @@ const typeDefs = gql`
 		token: String!
 	}
 
+	type createUserResponse {
+		token: String!
+		user: User!
+	}
+
 	type Query {
 		me: me
 		user(id: Int!): User
@@ -35,7 +40,11 @@ const typeDefs = gql`
 		activateUser(mobile: String!, name: String!): User!
 		logout: Boolean
 		createAuthToken: accessToken
-		createUser(email: String!, avatar: String, githubId: Int!): User!
+		createUser(
+			email: String!
+			avatar: String
+			githubId: Int!
+		): createUserResponse!
 	}
 `;
 

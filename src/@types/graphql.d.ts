@@ -20,7 +20,7 @@ export type Mutation = {
   activateUser: User;
   logout?: Maybe<Scalars['Boolean']>;
   createAuthToken?: Maybe<AccessToken>;
-  createUser: User;
+  createUser: CreateUserResponse;
 };
 
 
@@ -73,6 +73,12 @@ export type User = {
 export type AccessToken = {
   __typename?: 'accessToken';
   token: Scalars['String'];
+};
+
+export type CreateUserResponse = {
+  __typename?: 'createUserResponse';
+  token: Scalars['String'];
+  user: User;
 };
 
 export type Me = {
@@ -167,6 +173,7 @@ export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>;
   User: ResolverTypeWrapper<User>;
   accessToken: ResolverTypeWrapper<AccessToken>;
+  createUserResponse: ResolverTypeWrapper<CreateUserResponse>;
   me: ResolverTypeWrapper<Me>;
 };
 
@@ -180,6 +187,7 @@ export type ResolversParentTypes = {
   Query: {};
   User: User;
   accessToken: AccessToken;
+  createUserResponse: CreateUserResponse;
   me: Me;
 };
 
@@ -188,7 +196,7 @@ export type MutationResolvers<ContextType = Context, ParentType extends Resolver
   activateUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationActivateUserArgs, 'mobile' | 'name'>>;
   logout?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   createAuthToken?: Resolver<Maybe<ResolversTypes['accessToken']>, ParentType, ContextType>;
-  createUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'email' | 'githubId'>>;
+  createUser?: Resolver<ResolversTypes['createUserResponse'], ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'email' | 'githubId'>>;
 };
 
 export type ProfileResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Profile'] = ResolversParentTypes['Profile']> = {
@@ -218,6 +226,12 @@ export type AccessTokenResolvers<ContextType = Context, ParentType extends Resol
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type CreateUserResponseResolvers<ContextType = Context, ParentType extends ResolversParentTypes['createUserResponse'] = ResolversParentTypes['createUserResponse']> = {
+  token?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type MeResolvers<ContextType = Context, ParentType extends ResolversParentTypes['me'] = ResolversParentTypes['me']> = {
   user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
   profile?: Resolver<Maybe<ResolversTypes['Profile']>, ParentType, ContextType>;
@@ -230,6 +244,7 @@ export type Resolvers<ContextType = Context> = {
   Query?: QueryResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
   accessToken?: AccessTokenResolvers<ContextType>;
+  createUserResponse?: CreateUserResponseResolvers<ContextType>;
   me?: MeResolvers<ContextType>;
 };
 
