@@ -13,6 +13,7 @@ const typeDefs = gql`
 
 	type Query {
 		findChallanges: [Challange]!
+		getChallange(id: Int!): Challange
 	}
 `;
 

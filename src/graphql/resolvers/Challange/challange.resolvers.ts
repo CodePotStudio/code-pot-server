@@ -5,6 +5,9 @@ const query: Resolvers = {
 		findChallanges: async (_, __, { prisma }) => {
 			return await prisma.challange.findMany();
 		},
+		getChallange: async (_, { id }, { prisma }) => {
+			return await prisma.challange.findUnique({ where: { id } });
+		},
 	},
 };
 
