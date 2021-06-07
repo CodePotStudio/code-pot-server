@@ -1,10 +1,12 @@
-service: code-pot-server
+org: toycrane
+service: codepot-backend
 provider:
   name: aws
   runtime: nodejs12.x
   region: ap-northeast-2
 functions:
   graphql:
+    name: ${sls:stage}-graphql-server
     handler: src/index.graphqlHandler
     events:
       - http:
@@ -15,13 +17,36 @@ functions:
           path: graphql
           method: get
           cors: true
+  express:
+    name: ${sls:stage}-express-server
+    handler: src/expressServer.expressHandler
+    events:
+      - http: ANY /
+      - http: "ANY {proxy+}"
 plugins:
   - serverless-webpack
   - serverless-offline
   - serverless-dotenv-plugin
+  - serverless-domain-manager
 custom:
+  # stage에 따른 domain 분리
+  stage: ${sls:stage}
+  domains:
+    prod: api.codepot.co
+    staging: staging-api.codepot.co
+    dev: dev-api.codepot.co
   webpack:
+    webpackConfig: "webpack.config.js"
     includeModules: true
-    custom:
+    packager: "yarn"
+    packagerOptions:
+      scripts: # build 후에 client 초기화
+        - prisma generate
   serverless-offline:
     httpPort: 4000
+    noPrependStageInUrl: true
+  customDomain:
+    basePath: ""
+    domainName: ${self:custom.domains.${sls:stage}}
+    stage: "${sls:stage}"
+    createRoute53Record: true

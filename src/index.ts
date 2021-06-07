@@ -1,14 +1,10 @@
 import { ApolloServer } from "apollo-server-lambda";
+import ApolloConfig from "./config/apollo";
 
-import { resolvers } from "./graphql/resolvers/test";
-import { typeDefs } from "./graphql/typeDefs/test";
-
-const apolloServer = new ApolloServer({
-	resolvers,
-	typeDefs,
-	playground: {
-		endpoint: "/dev/graphql",
+const apolloServer = new ApolloServer(ApolloConfig);
+export const graphqlHandler = apolloServer.createHandler({
+	cors: {
+		origin: true,
+		credentials: true,
 	},
 });
-
-export const graphqlHandler = apolloServer.createHandler();

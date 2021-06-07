@@ -1,0 +1,52 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]
+}
+
+model Profile {
+  id     Int     @id @default(autoincrement())
+  bio    String?
+  userId Int     @unique
+  avatar String?
+  user   User    @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  name         String?
+  githubId     Int?
+  isActive     Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now()) @updatedAt
+  refreshToken String?  @unique
+  mobile       String?
+  RBankCode    String?
+  RBankAccount String?
+  profile      Profile?
+}
+
+model Class {
+  id            Int         @id @default(autoincrement())
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @default(now())
+  thumbnail     String
+  name          String
+  remarks       String
+  status        ClassStatus
+  startDateTime DateTime
+  endDateTime   DateTime
+}
+
+enum ClassStatus {
+  PREPARING
+  RECRUITING
+  RECRUITMENT_CLOSED
+  INPROGRESS
+  CLOSED
+}
