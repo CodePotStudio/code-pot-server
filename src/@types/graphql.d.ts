@@ -65,8 +65,8 @@ export type Query = {
   __typename?: 'Query';
   findChallanges: Array<Maybe<Challange>>;
   getChallange?: Maybe<Challange>;
+  getUser?: Maybe<User>;
   me?: Maybe<Me>;
-  user?: Maybe<User>;
 };
 
 
@@ -75,7 +75,7 @@ export type QueryGetChallangeArgs = {
 };
 
 
-export type QueryUserArgs = {
+export type QueryGetUserArgs = {
   id: Scalars['Int'];
 };
 
@@ -247,8 +247,8 @@ export type ProfileResolvers<ContextType = Context, ParentType extends Resolvers
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   findChallanges?: Resolver<Array<Maybe<ResolversTypes['Challange']>>, ParentType, ContextType>;
   getChallange?: Resolver<Maybe<ResolversTypes['Challange']>, ParentType, ContextType, RequireFields<QueryGetChallangeArgs, 'id'>>;
+  getUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryGetUserArgs, 'id'>>;
   me?: Resolver<Maybe<ResolversTypes['me']>, ParentType, ContextType>;
-  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUserArgs, 'id'>>;
 };
 
 export type UserResolvers<ContextType = Context, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
