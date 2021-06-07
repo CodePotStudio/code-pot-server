@@ -14,6 +14,15 @@ export type Scalars = {
   Float: number;
 };
 
+export type Challange = {
+  __typename?: 'Challange';
+  id: Scalars['Int'];
+  thumbnail: Scalars['String'];
+  name: Scalars['String'];
+  remarks: Scalars['String'];
+  status: Scalars['String'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   registerRefundAccount: User;
@@ -50,6 +59,7 @@ export type Profile = {
 
 export type Query = {
   __typename?: 'Query';
+  challanges: Array<Maybe<Challange>>;
   me?: Maybe<Me>;
   user?: Maybe<User>;
 };
@@ -165,10 +175,11 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  Mutation: ResolverTypeWrapper<{}>;
-  String: ResolverTypeWrapper<Scalars['String']>;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  Challange: ResolverTypeWrapper<Challange>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
+  String: ResolverTypeWrapper<Scalars['String']>;
+  Mutation: ResolverTypeWrapper<{}>;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Profile: ResolverTypeWrapper<Profile>;
   Query: ResolverTypeWrapper<{}>;
   User: ResolverTypeWrapper<User>;
@@ -179,16 +190,26 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  Mutation: {};
-  String: Scalars['String'];
-  Boolean: Scalars['Boolean'];
+  Challange: Challange;
   Int: Scalars['Int'];
+  String: Scalars['String'];
+  Mutation: {};
+  Boolean: Scalars['Boolean'];
   Profile: Profile;
   Query: {};
   User: User;
   accessToken: AccessToken;
   createUserResponse: CreateUserResponse;
   me: Me;
+};
+
+export type ChallangeResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Challange'] = ResolversParentTypes['Challange']> = {
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  thumbnail?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  remarks?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  status?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
@@ -206,6 +227,7 @@ export type ProfileResolvers<ContextType = Context, ParentType extends Resolvers
 };
 
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  challanges?: Resolver<Array<Maybe<ResolversTypes['Challange']>>, ParentType, ContextType>;
   me?: Resolver<Maybe<ResolversTypes['me']>, ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUserArgs, 'id'>>;
 };
@@ -239,6 +261,7 @@ export type MeResolvers<ContextType = Context, ParentType extends ResolversParen
 };
 
 export type Resolvers<ContextType = Context> = {
+  Challange?: ChallangeResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Profile?: ProfileResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;

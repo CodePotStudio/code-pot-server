@@ -46,15 +46,7 @@ async function getUser(headers: LambdaHeader) {
 			});
 			return user;
 		} catch (error) {
-			if (error instanceof TokenExpiredError) {
-				throw new AuthenticationError("Token 유효기간이 만료되었습니다.");
-			} else if (error instanceof JsonWebTokenError) {
-				throw new AuthenticationError("잘못된 Access Token입니다.");
-			} else {
-				throw new AuthenticationError(
-					"토큰 인증 과정에서 에러가 발생하였습니다."
-				);
-			}
+			console.log(error);
 		}
 	} else {
 		return null;
