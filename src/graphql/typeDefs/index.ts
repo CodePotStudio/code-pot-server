@@ -1,5 +1,7 @@
 import { mergeTypeDefs } from "@graphql-tools/merge";
 import UserTypeDefs from "./User.types";
+import { typeDefs as scalarTypeDefs } from "graphql-scalars";
 
-const typesArray = [UserTypeDefs];
+// custom scalaType 추가
+const typesArray = [...scalarTypeDefs, UserTypeDefs];
 export default mergeTypeDefs(typesArray);
