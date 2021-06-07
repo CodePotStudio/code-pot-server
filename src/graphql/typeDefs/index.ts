@@ -1,8 +1,8 @@
 import { mergeTypeDefs } from "@graphql-tools/merge";
 import UserTypeDefs from "./User.types";
 import ChallangeTypeDefs from "./Challange.types";
-import { typeDefs as scalarTypeDefs } from "graphql-scalars";
+import CustomScalarTypeDefs from "./customScalar.types";
 
 // custom scalaType 추가
-const typesArray = [...scalarTypeDefs, UserTypeDefs, ChallangeTypeDefs];
+const typesArray = [CustomScalarTypeDefs, UserTypeDefs, ChallangeTypeDefs];
 export default mergeTypeDefs(typesArray);

@@ -4,10 +4,12 @@ schema:
 documents: null
 generates:
   src/@types/graphql.d.ts:
-    config:
-      contextType: ./context#Context
     mapper:
       User: ./user#User
     plugins:
       - "typescript"
       - "typescript-resolvers"
+    config:
+      contextType: ./context#Context
+      scalars:
+        Date: String

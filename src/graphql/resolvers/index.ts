@@ -1,8 +1,12 @@
 import { mergeResolvers } from "@graphql-tools/merge";
 import UserResolvers from "./User";
 import ChallangeResolvers from "./Challange";
-import { resolvers as scalarResolvers } from "graphql-scalars";
+import customScalarResolvers from "./customScalar";
 
 // custom scalar resolver 추가
-const resolvers = [scalarResolvers, ...UserResolvers, ...ChallangeResolvers];
+const resolvers = [
+	customScalarResolvers,
+	...UserResolvers,
+	...ChallangeResolvers,
+];
 export default mergeResolvers(resolvers);

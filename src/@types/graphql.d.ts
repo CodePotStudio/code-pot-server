@@ -1,4 +1,4 @@
-import { GraphQLResolveInfo } from 'graphql';
+import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 import { Context } from './context';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -12,6 +12,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  Date: String;
 };
 
 export type Challange = {
@@ -21,7 +22,10 @@ export type Challange = {
   name: Scalars['String'];
   remarks: Scalars['String'];
   status: Scalars['String'];
+  startDateTime: Scalars['Date'];
+  endDateTime: Scalars['Date'];
 };
+
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -178,6 +182,7 @@ export type ResolversTypes = {
   Challange: ResolverTypeWrapper<Challange>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   String: ResolverTypeWrapper<Scalars['String']>;
+  Date: ResolverTypeWrapper<Scalars['Date']>;
   Mutation: ResolverTypeWrapper<{}>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Profile: ResolverTypeWrapper<Profile>;
@@ -193,6 +198,7 @@ export type ResolversParentTypes = {
   Challange: Challange;
   Int: Scalars['Int'];
   String: Scalars['String'];
+  Date: Scalars['Date'];
   Mutation: {};
   Boolean: Scalars['Boolean'];
   Profile: Profile;
@@ -209,8 +215,14 @@ export type ChallangeResolvers<ContextType = Context, ParentType extends Resolve
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   remarks?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   status?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  startDateTime?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  endDateTime?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
+
+export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Date'], any> {
+  name: 'Date';
+}
 
 export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   registerRefundAccount?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationRegisterRefundAccountArgs, 'bankCode' | 'bankAccount'>>;
@@ -262,6 +274,7 @@ export type MeResolvers<ContextType = Context, ParentType extends ResolversParen
 
 export type Resolvers<ContextType = Context> = {
   Challange?: ChallangeResolvers<ContextType>;
+  Date?: GraphQLScalarType;
   Mutation?: MutationResolvers<ContextType>;
   Profile?: ProfileResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
