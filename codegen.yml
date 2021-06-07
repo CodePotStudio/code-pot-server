@@ -12,4 +12,4 @@ generates:
     config:
       contextType: ./context#Context
       scalars:
-        Date: String
+        Date: Date

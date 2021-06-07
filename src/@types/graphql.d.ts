@@ -12,7 +12,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  Date: String;
+  Date: Date;
 };
 
 export type Challange = {
@@ -63,7 +63,7 @@ export type Profile = {
 
 export type Query = {
   __typename?: 'Query';
-  challanges: Array<Maybe<Challange>>;
+  findChallanges: Array<Maybe<Challange>>;
   me?: Maybe<Me>;
   user?: Maybe<User>;
 };
@@ -239,7 +239,7 @@ export type ProfileResolvers<ContextType = Context, ParentType extends Resolvers
 };
 
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  challanges?: Resolver<Array<Maybe<ResolversTypes['Challange']>>, ParentType, ContextType>;
+  findChallanges?: Resolver<Array<Maybe<ResolversTypes['Challange']>>, ParentType, ContextType>;
   me?: Resolver<Maybe<ResolversTypes['me']>, ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUserArgs, 'id'>>;
 };
