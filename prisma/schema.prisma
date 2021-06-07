@@ -30,3 +30,23 @@ model User {
   RBankAccount String?
   profile      Profile?
 }
+
+model Challange {
+  id            Int             @id @default(autoincrement())
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @default(now())
+  thumbnail     String
+  name          String
+  remarks       String
+  status        ChallangeStatus
+  startDateTime DateTime
+  endDateTime   DateTime
+}
+
+enum ChallangeStatus {
+  PREPARING
+  RECRUITING
+  RECRUITMENT_CLOSED
+  INPROGRESS
+  CLOSED
+}
