@@ -19,8 +19,12 @@ const typeDefs = gql`
 		endDateTime: Date!
 	}
 
+	input ChallangeFilter {
+		status: ChallangeStatus!
+	}
+
 	type Query {
-		findChallanges: [Challange]!
+		findChallanges(filter: ChallangeFilter): [Challange]!
 		getChallange(id: Int!): Challange
 	}
 `;

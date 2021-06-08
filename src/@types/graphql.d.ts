@@ -26,6 +26,10 @@ export type Challange = {
   endDateTime: Scalars['Date'];
 };
 
+export type ChallangeFilter = {
+  status: ChallangeStatus;
+};
+
 export type ChallangeStatus =
   | 'PREPARING'
   | 'RECRUITING'
@@ -73,6 +77,11 @@ export type Query = {
   findChallanges: Array<Maybe<Challange>>;
   getChallange?: Maybe<Challange>;
   me?: Maybe<Me>;
+};
+
+
+export type QueryFindChallangesArgs = {
+  filter?: Maybe<ChallangeFilter>;
 };
 
 
@@ -189,6 +198,7 @@ export type ResolversTypes = {
   Challange: ResolverTypeWrapper<Challange>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   String: ResolverTypeWrapper<Scalars['String']>;
+  ChallangeFilter: ChallangeFilter;
   ChallangeStatus: ChallangeStatus;
   Date: ResolverTypeWrapper<Scalars['Date']>;
   Mutation: ResolverTypeWrapper<{}>;
@@ -206,6 +216,7 @@ export type ResolversParentTypes = {
   Challange: Challange;
   Int: Scalars['Int'];
   String: Scalars['String'];
+  ChallangeFilter: ChallangeFilter;
   Date: Scalars['Date'];
   Mutation: {};
   Boolean: Scalars['Boolean'];
@@ -247,7 +258,7 @@ export type ProfileResolvers<ContextType = Context, ParentType extends Resolvers
 };
 
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  findChallanges?: Resolver<Array<Maybe<ResolversTypes['Challange']>>, ParentType, ContextType>;
+  findChallanges?: Resolver<Array<Maybe<ResolversTypes['Challange']>>, ParentType, ContextType, RequireFields<QueryFindChallangesArgs, never>>;
   getChallange?: Resolver<Maybe<ResolversTypes['Challange']>, ParentType, ContextType, RequireFields<QueryGetChallangeArgs, 'id'>>;
   me?: Resolver<Maybe<ResolversTypes['me']>, ParentType, ContextType>;
 };
