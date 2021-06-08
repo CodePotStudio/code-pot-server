@@ -21,10 +21,17 @@ export type Challange = {
   thumbnail: Scalars['String'];
   name: Scalars['String'];
   remarks: Scalars['String'];
-  status: Scalars['String'];
+  status: ChallangeStatus;
   startDateTime: Scalars['Date'];
   endDateTime: Scalars['Date'];
 };
+
+export type ChallangeStatus =
+  | 'PREPARING'
+  | 'RECRUITING'
+  | 'RECRUITMENT_CLOSED'
+  | 'INPROGRESS'
+  | 'CLOSED';
 
 
 export type Mutation = {
@@ -182,6 +189,7 @@ export type ResolversTypes = {
   Challange: ResolverTypeWrapper<Challange>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   String: ResolverTypeWrapper<Scalars['String']>;
+  ChallangeStatus: ChallangeStatus;
   Date: ResolverTypeWrapper<Scalars['Date']>;
   Mutation: ResolverTypeWrapper<{}>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
@@ -214,7 +222,7 @@ export type ChallangeResolvers<ContextType = Context, ParentType extends Resolve
   thumbnail?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   remarks?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  status?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  status?: Resolver<ResolversTypes['ChallangeStatus'], ParentType, ContextType>;
   startDateTime?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
   endDateTime?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
