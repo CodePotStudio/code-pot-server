@@ -2,6 +2,8 @@ overwrite: true
 schema:
   - "./src/graphql/typeDefs/**.types.ts"
 config:
+  # enum 대신 type으로 대체 (기존 방식이 원하는 대로 작동하지 않음)
+  enumsAsTypes: true
   contextType: ./context#Context
   strictScalars: true
   # custom scalar type 강제 지정
