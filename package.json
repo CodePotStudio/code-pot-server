@@ -4,7 +4,7 @@
 	"description": "code pot back-end server",
 	"main": "index.js",
 	"scripts": {
-		"start": "sls offline start",
+		"dev": "concurrently \"sls offline start\" \"yarn generate --watch\"",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"deploy:dev": "sls deploy --stage dev",
 		"deploy:prod": "sls deploy --stage prod",
