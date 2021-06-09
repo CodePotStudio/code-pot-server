@@ -24,7 +24,7 @@ const typeDefs = gql`
 	}
 
 	type Query {
-		findChallanges(filter: ChallangeFilter): [Challange]!
+		findChallanges(filter: ChallangeFilter): [Challange!]!
 		getChallange(id: Int!): Challange
 	}
 `;
