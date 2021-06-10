@@ -26,7 +26,7 @@ const typeDefs = gql`
 	}
 
 	type createUserResponse {
-		token: accessToken!
+		token: String!
 		user: User!
 	}
 

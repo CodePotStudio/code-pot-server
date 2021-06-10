@@ -42,8 +42,6 @@ export type Mutation = {
   __typename?: 'Mutation';
   registerRefundAccount: User;
   activateUser: User;
-  logout?: Maybe<Scalars['Boolean']>;
-  createAuthToken?: Maybe<AccessToken>;
   createUser: CreateUserResponse;
 };
 
@@ -202,10 +200,10 @@ export type ResolversTypes = {
   ChallangeStatus: ChallangeStatus;
   Date: ResolverTypeWrapper<Scalars['Date']>;
   Mutation: ResolverTypeWrapper<{}>;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Profile: ResolverTypeWrapper<Profile>;
   Query: ResolverTypeWrapper<{}>;
   User: ResolverTypeWrapper<User>;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   accessToken: ResolverTypeWrapper<AccessToken>;
   createUserResponse: ResolverTypeWrapper<CreateUserResponse>;
   me: ResolverTypeWrapper<Me>;
@@ -219,10 +217,10 @@ export type ResolversParentTypes = {
   ChallangeFilter: ChallangeFilter;
   Date: Scalars['Date'];
   Mutation: {};
-  Boolean: Scalars['Boolean'];
   Profile: Profile;
   Query: {};
   User: User;
+  Boolean: Scalars['Boolean'];
   accessToken: AccessToken;
   createUserResponse: CreateUserResponse;
   me: Me;
@@ -246,8 +244,6 @@ export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
 export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   registerRefundAccount?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationRegisterRefundAccountArgs, 'bankCode' | 'bankAccount'>>;
   activateUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationActivateUserArgs, 'mobile' | 'name'>>;
-  logout?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
-  createAuthToken?: Resolver<Maybe<ResolversTypes['accessToken']>, ParentType, ContextType>;
   createUser?: Resolver<ResolversTypes['createUserResponse'], ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'email' | 'githubId'>>;
 };
 
