@@ -1,5 +1,4 @@
-org: toycrane
-app: codepot
+org: code-pot
 service: codepot-backend
 provider:
   name: aws
