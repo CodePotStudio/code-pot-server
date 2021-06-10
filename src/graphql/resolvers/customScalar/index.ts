@@ -1,6 +1,6 @@
-import { Kind, GraphQLScalarType } from "graphql";
-import { validateJSDate, validateDate } from "./validator";
-import { serializeDate, parseDate } from "./formatter";
+import { GraphQLScalarType, Kind } from "graphql";
+import { validateDate, validateJSDate } from "./validator";
+import { parseDate, serializeDate } from "./formatter";
 
 export default {
 	Date: new GraphQLScalarType({

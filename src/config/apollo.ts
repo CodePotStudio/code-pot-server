@@ -1,10 +1,10 @@
-import { AuthenticationError, Config } from "apollo-server-lambda";
+import { Config } from "apollo-server-lambda";
 import resolvers from "../graphql/resolvers";
 import typeDefs from "../graphql/typeDefs";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { PrismaClient } from "@prisma/client";
 import { Context } from "../@types/context";
-import jwt, { JsonWebTokenError, TokenExpiredError } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { environment } from ".";
 import {
 	APIGatewayProxyEventV2 as LambdaEvent,
