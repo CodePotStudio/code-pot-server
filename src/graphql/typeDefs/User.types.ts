@@ -26,7 +26,7 @@ const typeDefs = gql`
 	}
 
 	type createUserResponse {
-		token: String!
+		token: accessToken!
 		user: User!
 	}
 
@@ -37,8 +37,6 @@ const typeDefs = gql`
 	type Mutation {
 		registerRefundAccount(bankCode: String!, bankAccount: String!): User!
 		activateUser(mobile: String!, name: String!): User!
-		logout: Boolean
-		createAuthToken: accessToken
 		createUser(
 			email: String!
 			avatar: String
