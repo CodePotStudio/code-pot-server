@@ -17,12 +17,6 @@ functions:
           path: graphql
           method: get
           cors: true
-  express:
-    name: ${sls:stage}-express-server
-    handler: src/expressServer.expressHandler
-    events:
-      - http: ANY /
-      - http: "ANY {proxy+}"
 plugins:
   - serverless-webpack
   - serverless-offline
