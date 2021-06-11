@@ -32,14 +32,11 @@ const typeDefs = gql`
 
 	type Query {
 		me: me
-		user(id: Int!): User
 	}
 
 	type Mutation {
 		registerRefundAccount(bankCode: String!, bankAccount: String!): User!
 		activateUser(mobile: String!, name: String!): User!
-		logout: Boolean
-		createAuthToken: accessToken
 		createUser(
 			email: String!
 			avatar: String
