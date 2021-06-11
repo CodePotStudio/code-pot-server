@@ -31,6 +31,7 @@ module.exports = {
 		extensions: [".ts", ".js"],
 	},
 	target: "node",
+	// prisma schema를 복사한다. (javascript 파일이 아니기 때문에 임의로 복사해주어야 함)
 	plugins: [
 		new CopyWebpackPlugin({
 			patterns: ["./prisma/schema.prisma"],
