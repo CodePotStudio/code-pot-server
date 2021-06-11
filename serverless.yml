@@ -34,9 +34,9 @@ custom:
     webpackConfig: "webpack.config.js"
     includeModules: true
     packager: "yarn"
-    packagerOptions:
-      scripts: # build 후에 client 초기화
-        - prisma generate
+    # packagerOptions:
+    #   scripts: # build 후에 client 초기화
+    #     - prisma generate
   serverless-offline:
     httpPort: 4000
     noPrependStageInUrl: true
