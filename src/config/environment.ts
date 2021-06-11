@@ -4,7 +4,6 @@ type Environment = {
 	databaseURL: string;
 	githubClientID: string;
 	githubSecret: string;
-	clientURL: string;
 	serverURL: string;
 };
 
