@@ -1,4 +1,4 @@
-import { GraphQLResolveInfo } from 'graphql';
+import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 import { Context } from './context';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -12,14 +12,36 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  Date: Date;
 };
+
+export type Challange = {
+  __typename?: 'Challange';
+  id: Scalars['Int'];
+  thumbnail: Scalars['String'];
+  name: Scalars['String'];
+  remarks: Scalars['String'];
+  status: ChallangeStatus;
+  startDateTime: Scalars['Date'];
+  endDateTime: Scalars['Date'];
+};
+
+export type ChallangeFilter = {
+  status: ChallangeStatus;
+};
+
+export type ChallangeStatus =
+  | 'PREPARING'
+  | 'RECRUITING'
+  | 'RECRUITMENT_CLOSED'
+  | 'INPROGRESS'
+  | 'CLOSED';
+
 
 export type Mutation = {
   __typename?: 'Mutation';
   registerRefundAccount: User;
   activateUser: User;
-  logout?: Maybe<Scalars['Boolean']>;
-  createAuthToken?: Maybe<AccessToken>;
   createUser: CreateUserResponse;
 };
 
@@ -50,12 +72,18 @@ export type Profile = {
 
 export type Query = {
   __typename?: 'Query';
+  findChallanges: Array<Challange>;
+  getChallange?: Maybe<Challange>;
   me?: Maybe<Me>;
-  user?: Maybe<User>;
 };
 
 
-export type QueryUserArgs = {
+export type QueryFindChallangesArgs = {
+  filter?: Maybe<ChallangeFilter>;
+};
+
+
+export type QueryGetChallangeArgs = {
   id: Scalars['Int'];
 };
 
@@ -165,13 +193,17 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  Mutation: ResolverTypeWrapper<{}>;
-  String: ResolverTypeWrapper<Scalars['String']>;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  Challange: ResolverTypeWrapper<Challange>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
+  String: ResolverTypeWrapper<Scalars['String']>;
+  ChallangeFilter: ChallangeFilter;
+  ChallangeStatus: ChallangeStatus;
+  Date: ResolverTypeWrapper<Scalars['Date']>;
+  Mutation: ResolverTypeWrapper<{}>;
   Profile: ResolverTypeWrapper<Profile>;
   Query: ResolverTypeWrapper<{}>;
   User: ResolverTypeWrapper<User>;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   accessToken: ResolverTypeWrapper<AccessToken>;
   createUserResponse: ResolverTypeWrapper<CreateUserResponse>;
   me: ResolverTypeWrapper<Me>;
@@ -179,23 +211,39 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  Mutation: {};
-  String: Scalars['String'];
-  Boolean: Scalars['Boolean'];
+  Challange: Challange;
   Int: Scalars['Int'];
+  String: Scalars['String'];
+  ChallangeFilter: ChallangeFilter;
+  Date: Scalars['Date'];
+  Mutation: {};
   Profile: Profile;
   Query: {};
   User: User;
+  Boolean: Scalars['Boolean'];
   accessToken: AccessToken;
   createUserResponse: CreateUserResponse;
   me: Me;
 };
 
+export type ChallangeResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Challange'] = ResolversParentTypes['Challange']> = {
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  thumbnail?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  remarks?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  status?: Resolver<ResolversTypes['ChallangeStatus'], ParentType, ContextType>;
+  startDateTime?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  endDateTime?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Date'], any> {
+  name: 'Date';
+}
+
 export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   registerRefundAccount?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationRegisterRefundAccountArgs, 'bankCode' | 'bankAccount'>>;
   activateUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationActivateUserArgs, 'mobile' | 'name'>>;
-  logout?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
-  createAuthToken?: Resolver<Maybe<ResolversTypes['accessToken']>, ParentType, ContextType>;
   createUser?: Resolver<ResolversTypes['createUserResponse'], ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'email' | 'githubId'>>;
 };
 
@@ -206,8 +254,9 @@ export type ProfileResolvers<ContextType = Context, ParentType extends Resolvers
 };
 
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  findChallanges?: Resolver<Array<ResolversTypes['Challange']>, ParentType, ContextType, RequireFields<QueryFindChallangesArgs, never>>;
+  getChallange?: Resolver<Maybe<ResolversTypes['Challange']>, ParentType, ContextType, RequireFields<QueryGetChallangeArgs, 'id'>>;
   me?: Resolver<Maybe<ResolversTypes['me']>, ParentType, ContextType>;
-  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUserArgs, 'id'>>;
 };
 
 export type UserResolvers<ContextType = Context, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
@@ -239,6 +288,8 @@ export type MeResolvers<ContextType = Context, ParentType extends ResolversParen
 };
 
 export type Resolvers<ContextType = Context> = {
+  Challange?: ChallangeResolvers<ContextType>;
+  Date?: GraphQLScalarType;
   Mutation?: MutationResolvers<ContextType>;
   Profile?: ProfileResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;

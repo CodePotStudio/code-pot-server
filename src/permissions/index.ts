@@ -1,5 +1,5 @@
-import { shield, not } from "graphql-shield";
-import { isAuthenticated, isActivated } from "./rules";
+import { not, shield } from "graphql-shield";
+import { isActivated, isAuthenticated } from "./rules";
 
 export const permissions = shield(
   {
