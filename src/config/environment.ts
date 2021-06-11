@@ -11,8 +11,8 @@ const environment: Environment = {
 	jwtSecret: process.env.JWT_SECRET as string,
 	env: process.env.ENV as string,
 	databaseURL: process.env.DATABASE_URL as string,
-	githubClientID: process.env.GITHUB_CLIENT_ID as string,
-	githubSecret: process.env.GITHUB_SECRET as string,
+	githubClientID: process.env.GH_CLIENT_ID as string,
+	githubSecret: process.env.GH_SECRET as string,
 	serverURL: process.env.SERVER_URL as string,
 };
 
