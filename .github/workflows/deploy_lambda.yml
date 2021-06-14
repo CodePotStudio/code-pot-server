@@ -48,7 +48,7 @@ jobs:
 
       # Generate Prisma Client and binary that can run in a lambda environment
       - name: Prepare prisma client
-        run: yarn PRISMA_BINARY_TARGET=rhel-openssl-1.0.x prisma generate
+        run: PRISMA_BINARY_TARGET=rhel-openssl-1.0.x yarn prisma generate
 
       - name: Prepare "@prisma/client" lambda layer
         run: ./scripts/ci/create_prisma_client_layer.sh
@@ -74,7 +74,7 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Prepare prisma client
-        run: yarn PRISMA_BINARY_TARGET=rhel-openssl-1.0.x prisma generate
+        run: PRISMA_BINARY_TARGET=rhel-openssl-1.0.x yarn prisma generate
 
       - name: Build assets
         run: yarn tsc
@@ -103,7 +103,7 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Prepare prisma client
-        run: yarn PRISMA_BINARY_TARGET=rhel-openssl-1.0.x prisma generate
+        run: PRISMA_BINARY_TARGET=rhel-openssl-1.0.x yarn prisma generate
 
       - name: Build lambdas
         run: yarn tsc
