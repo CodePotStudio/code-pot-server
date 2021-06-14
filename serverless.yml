@@ -22,6 +22,11 @@ plugins:
   - serverless-webpack
   - serverless-offline
   - serverless-domain-manager
+  - serverless-dotenv-plugin
+package:
+  patterns:
+    - "!node_modules/.prisma/client/query-engine-*"
+    - "node_modules/.prisma/client/query-engine-rhel-*"
 custom:
   # stage에 따른 domain 분리
   stage: ${sls:stage}
