@@ -20,7 +20,7 @@ jobs:
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           ENV: ${{ secrets.ENV }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          SLS_DEBUG: * 
+          SLS_DEBUG: "*"
           SERVER_URL: ${{ secrets.SERVER_URL }}
           GH_CLIENT_ID: ${{ secrets.GH_CLIENT_ID }}
           GH_SECRET: ${{ secrets.GH_SECRET }}
