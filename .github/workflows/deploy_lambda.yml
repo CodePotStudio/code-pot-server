@@ -167,7 +167,7 @@ jobs:
       - name: Deploy lambdas and layers
         uses: aaronpanch/action-serverless@master
         with:
-          args: deploy --debug
+          args: deploy --stage dev
         env:
           SERVICE_ROOT: ./build/lambdas
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
