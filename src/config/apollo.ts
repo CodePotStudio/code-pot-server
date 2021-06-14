@@ -13,7 +13,7 @@ import cookie from "cookie";
 import customHeadersPlugin from "../plugins/customHeadersPlugin";
 import { applyMiddleware } from "graphql-middleware";
 import { permissions } from "../permissions";
-import { createPrismaClient } from "../libs/prisma";
+import { createPrismaClient } from "@libs/prisma";
 
 const schema = makeExecutableSchema({
 	typeDefs,
