@@ -2,7 +2,6 @@ import { Config } from "apollo-server-lambda";
 import resolvers from "../graphql/resolvers";
 import typeDefs from "../graphql/typeDefs";
 import { makeExecutableSchema } from "@graphql-tools/schema";
-import { PrismaClient } from "@prisma/client";
 import { Context } from "../@types/context";
 import jwt from "jsonwebtoken";
 import { environment } from ".";
@@ -14,13 +13,14 @@ import cookie from "cookie";
 import customHeadersPlugin from "../plugins/customHeadersPlugin";
 import { applyMiddleware } from "graphql-middleware";
 import { permissions } from "../permissions";
+import { createPrismaClient } from "../libs/prisma";
 
 const schema = makeExecutableSchema({
 	typeDefs,
 	resolvers,
 });
 
-const prisma = new PrismaClient();
+const prisma = createPrismaClient();
 
 const setContext = async ({
 	event,
