@@ -24,7 +24,7 @@ jobs:
         run: yarn --production
 
       - name: Prepare lambda layer
-        run: ./scripts/ci/prepare-node-modules-lambda-layer.sh
+        run: ./scripts/ci/create_node_module_layer.sh
 
       - uses: actions/upload-artifact@v2
         with:
@@ -51,7 +51,7 @@ jobs:
         run: yarn PRISMA_BINARY_TARGET=rhel-openssl-1.0.x prisma generate
 
       - name: Prepare "@prisma/client" lambda layer
-        run: ./scripts/ci/prepare-prisma-client-lambda-layer.sh
+        run: ./scripts/ci/create_prisma_client_layer.sh
 
       - uses: actions/upload-artifact@v2
         with:
@@ -80,7 +80,7 @@ jobs:
         run: yarn tsc
 
       - name: Prepare "@libs/*"" lambda layer
-        run: ./scripts/ci/prepare-libs-lambda-layer.sh
+        run: ./scripts/ci/create_libs_layer.sh
 
       - uses: actions/upload-artifact@v2
         with:
