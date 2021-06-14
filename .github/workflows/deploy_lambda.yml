@@ -167,7 +167,7 @@ jobs:
       - shell: bash
         env:
           AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY}}
-        run: example-command "$AWS_ACCESS_KEY"
+        run: "$AWS_ACCESS_KEY"
 
       - name: Deploy lambdas and layers
         uses: aaronpanch/action-serverless@master
