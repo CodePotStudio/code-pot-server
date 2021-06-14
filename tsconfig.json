@@ -14,7 +14,7 @@
 		"sourceMap": true,
 		"strict": true,
 		"baseUrl": "./src",
-		"outDir": "./.build",
+		"outDir": "./build",
 		"paths": {
 			"@libs/*": ["libs/*"]
 		}

@@ -3,4 +3,5 @@ node_modules
 .webpack
 .env.*
 .build/
+build/
 yarn-error.log
