@@ -34,8 +34,8 @@ functions:
           method: get
           cors: true
   plugins:
-  - serverless-dotenv-plugin
-    layers:
-      - { Ref: TopicPrismaAwsNodeModulesLambdaLayer }
-      - { Ref: TopicPrismaAwsLibsLambdaLayer }
-      - { Ref: TopicPrismaAwsPrismaClientLambdaLayer }
+    - serverless-dotenv-plugin
+  layers:
+    - { Ref: TopicPrismaAwsNodeModulesLambdaLayer }
+    - { Ref: TopicPrismaAwsLibsLambdaLayer }
+    - { Ref: TopicPrismaAwsPrismaClientLambdaLayer }
