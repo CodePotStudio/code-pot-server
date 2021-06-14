@@ -164,9 +164,12 @@ jobs:
       - name: Move serverless.yml
         run: mv serverless.yml ./build/lambdas/serverless.yml
 
-      - name: Make envfile
-        uses: SpicyPizza/create-envfile@v1
+      - name: Deploy lambdas and layers
+        uses: aaronpanch/action-serverless@master
         with:
+          args: deploy --stage=dev
+        env:
+          SERVICE_ROOT: ./build/lambdas
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           ENV: ${{ secrets.ENV }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
@@ -174,14 +177,6 @@ jobs:
           SERVER_URL: ${{ secrets.SERVER_URL }}
           GH_CLIENT_ID: ${{ secrets.GH_CLIENT_ID }}
           GH_SECRET: ${{ secrets.GH_SECRET }}
-          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          file_name: .env
-
-      - name: Deploy lambdas and layers
-        uses: aaronpanch/action-serverless@master
-        with:
-          args: deploy
-        env:
           PRISMA_BINARY_TARGET: rhel-openssl-1.0.x
