@@ -1,14 +1,29 @@
-org: toycrane
-service: codepot-backend
-useDotenv: true
+service: prisma-aws-lambda-deployment
+
 provider:
   name: aws
   runtime: nodejs12.x
-  region: ap-northeast-2
+  stage: prod
+  region: ${env:AWS_REGION}
+  # vpc:
+  #   securityGroupIds:
+  #     -  # FILLME
+  #   subnetIds:
+  #     -  # FILLME
+  #     -  # FILLME
+
+layers:
+  TopicPrismaAwsNodeModules:
+    path: lambda-layers-node_modules
+  TopicPrismaAwsLibs:
+    path: lambda-layers-libs
+  TopicPrismaAwsPrismaClient:
+    path: lambda-layers-prisma-client
+
 functions:
   graphql:
     name: ${sls:stage}-graphql-server
-    handler: src/index.graphqlHandler
+    handler: graphql/handler.default
     events:
       - http:
           path: graphql
@@ -18,34 +33,9 @@ functions:
           path: graphql
           method: get
           cors: true
-plugins:
-  - serverless-webpack
-  - serverless-offline
-  - serverless-domain-manager
+  plugins:
   - serverless-dotenv-plugin
-package:
-  patterns:
-    - "!node_modules/.prisma/client/query-engine-*"
-    - "node_modules/.prisma/client/query-engine-rhel-*"
-custom:
-  # stage에 따른 domain 분리
-  stage: ${sls:stage}
-  domains:
-    prod: api.codepot.co
-    staging: staging-api.codepot.co
-    dev: dev-api.codepot.co
-  webpack:
-    webpackConfig: "webpack.config.js"
-    includeModules: true
-    packager: "yarn"
-    packagerOptions:
-      scripts: # build 후에 client 초기화
-        - prisma generate
-  serverless-offline:
-    httpPort: 4000
-    noPrependStageInUrl: true
-  customDomain:
-    basePath: ""
-    domainName: ${self:custom.domains.${sls:stage}}
-    stage: "${sls:stage}"
-    createRoute53Record: true
+    layers:
+      - { Ref: TopicPrismaAwsNodeModulesLambdaLayer }
+      - { Ref: TopicPrismaAwsLibsLambdaLayer }
+      - { Ref: TopicPrismaAwsPrismaClientLambdaLayer }
