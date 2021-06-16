@@ -32,6 +32,12 @@ jobs:
       - name: Prepare prisma client
         run: yarn prisma generate
 
+      - name: Check Env
+        run: 'echo "$GH_CLIENT_ID" > key'
+        shell: bash
+        env:
+          SSH_KEY: ${{secrets.SSH_KEY}}
+
       - name: serverless deploy
         uses: serverless/github-action@master
         with:
