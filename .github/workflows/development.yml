@@ -35,4 +35,4 @@ jobs:
       - name: serverless deploy
         uses: serverless/github-action@master
         with:
-          args: set SLS_DEBUG=* deploy --stage=dev
+          args: SLS_DEBUG=* deploy --stage=dev
