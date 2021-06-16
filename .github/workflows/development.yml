@@ -28,6 +28,10 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           file_name: .env
+
+      - name: Prepare prisma client
+        run: yarn PRISMA_BINARY_TARGET=rhel-openssl-1.0.x prisma generate
+
       - name: serverless deploy
         uses: serverless/github-action@master
         with:
