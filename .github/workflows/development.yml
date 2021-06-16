@@ -34,5 +34,6 @@ jobs:
 
       - name: serverless deploy
         uses: serverless/github-action@master
+        - run: echo $GH_CLIENT_ID $SLS_DEBUG
         with:
-          args: SLS_DEBUG=* deploy --stage=dev
+          args: deploy --stage=dev
