@@ -29,8 +29,8 @@ jobs:
           envkey_GH_SECRET: ${{ secrets.GH_SECRET }}
           file_name: .env
 
-      # - name: Prepare prisma client
-      #   run: yarn prisma generate
+      - name: Prepare prisma client
+        run: yarn prisma generate
 
       - name: serverless deploy
         uses: serverless/github-action@master
