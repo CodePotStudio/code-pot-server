@@ -4,7 +4,6 @@ type Environment = {
 	databaseURL: string;
 	githubClientID: string;
 	githubSecret: string;
-	serverURL: string;
 };
 
 const environment: Environment = {
@@ -13,7 +12,6 @@ const environment: Environment = {
 	databaseURL: process.env.DATABASE_URL as string,
 	githubClientID: process.env.GH_CLIENT_ID as string,
 	githubSecret: process.env.GH_SECRET as string,
-	serverURL: process.env.SERVER_URL as string,
 };
 
 export default environment;
