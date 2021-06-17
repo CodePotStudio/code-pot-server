@@ -1,4 +1,4 @@
-name: Deploy development branch
+name: Deploy develop branch
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - develop
 
 jobs:
-  deploy to develop server:
+  deploy to develop branch:
     name: deploy
     environment: develop
     runs-on: ubuntu-latest
