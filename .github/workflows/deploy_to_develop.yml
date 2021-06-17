@@ -11,10 +11,9 @@ jobs:
     environment: develop
     runs-on: ubuntu-latest
     steps:
-      - name: add debug module
-        uses: hmarr/debug-action@v2
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Install dependencies
         run: yarn install
 
