@@ -6,7 +6,7 @@ on:
       - develop
 
 jobs:
-  deploy to develop branch:
+  deploy-lambda:
     name: deploy
     environment: develop
     runs-on: ubuntu-latest
