@@ -11,6 +11,12 @@ jobs:
     environment: develop
     runs-on: ubuntu-latest
     steps:
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo ${{secrets.AWS_ACCESS_KEY_ID}}
+          echo ${{secrets.AWS_SECRET_ACCESS_KEY}}
+
       - name: Checkout
         uses: actions/checkout@v2
 
