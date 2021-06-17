@@ -11,49 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Step 1 - Echo out a GitHub Actions Secret to the logs
-        run: echo "Hello" echo ${{ secrets.SERVER_URL }}
-      - name: add debug module
-        uses: hmarr/debug-action@v2
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Install dependencies
-        run: yarn install
-      - name: Make envfile
-        uses: SpicyPizza/create-envfile@v1
-        with:
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          ENV: ${{ secrets.ENV }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          SLS_DEBUG: ${{ secrets.SLS_DEBUG }}
-          SERVER_URL: ${{ secrets.SERVER_URL }}
-          GH_CLIENT_ID: ${{ secrets.GH_CLIENT_ID }}
-          GH_SECRET: ${{ secrets.GH_SECRET }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          PRISMA_BINARY_TARGET: rhel-openssl-1.0.x
-          file_name: .env
-
-      - name: Prepare prisma client
-        run: yarn prisma generate
-
-      - name: Check Env
-        run: 'echo "$GH_CLIENT_ID" > key'
-        shell: bash
-        env:
-          SSH_KEY: ${{secrets.SSH_KEY}}
-
-      - name: serverless deploy
-        uses: serverless/github-action@master
-        with:
-          args: deploy --stage=dev
-        env:
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          ENV: ${{ secrets.ENV }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          SLS_DEBUG: ${{ secrets.SLS_DEBUG }}
-          SERVER_URL: ${{ secrets.SERVER_URL }}
-          GH_CLIENT_ID: ${{ secrets.GH_CLIENT_ID }}
-          GH_SECRET: ${{ secrets.GH_SECRET }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          PRISMA_BINARY_TARGET: rhel-openssl-1.0.x
+        run: | 
+              echo "Hello" 
+              echo ${{ secrets.SERVER_URL }}
