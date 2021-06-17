@@ -7,24 +7,14 @@ on:
 
 jobs:
   deploy-lambda:
-    name: deploy
     environment: develop
     runs-on: ubuntu-latest
     steps:
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo ${{secrets.AWS_ACCESS_KEY_ID}}
-          echo ${{secrets.AWS_SECRET_ACCESS_KEY}}
-
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Install dependencies
         run: yarn install
-
-      - name: Prepare prisma client
-        run: yarn prisma generate
 
       - name: serverless deploy
         uses: serverless/github-action@master
