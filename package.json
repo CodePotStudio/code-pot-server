@@ -11,9 +11,7 @@
 		"migrate:local": "dotenv -e .env.local -- npx prisma migrate dev && prisma generate",
 		"studio": "dotenv -e .env.local -- npx prisma studio",
 		"generate": "graphql-codegen --config codegen.yml",
-		"lint": "eslint --fix --ext .js,.jsx,ts,.tsx .",
-		"prisma:generate": "prisma gernerate",
-		"prisma:introspect": "prisma introspect"
+		"lint": "eslint --fix --ext .js,.jsx,ts,.tsx ."
 	},
 	"author": "",
 	"license": "ISC",
