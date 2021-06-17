@@ -26,7 +26,6 @@ jobs:
           SERVER_URL: ${{ secrets.SERVER_URL }}
           GH_CLIENT_ID: ${{ secrets.GH_CLIENT_ID }}
           GH_SECRET: ${{ secrets.GH_SECRET }}
-
           file_name: .env
 
       - name: Prepare prisma client
@@ -36,6 +35,7 @@ jobs:
         uses: serverless/github-action@master
         with:
           args: deploy --stage=dev
+        # serverless에서만 활용하는 환경 변수 추가
         env:
           PRISMA_BINARY_TARGET: rhel-openssl-1.0.x
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
