@@ -34,7 +34,12 @@ module.exports = {
 	// prisma schema를 복사한다. (javascript 파일이 아니기 때문에 임의로 복사해주어야 함)
 	plugins: [
 		new CopyWebpackPlugin({
-			patterns: ["./prisma/schema.prisma"],
+			patterns: [
+				{ from: "./prisma/schema.prisma" }, // without this the prisma generate above will not work
+				{
+					from: "./node_modules/.prisma/client/query-engine-rhel-openssl-1.0.x",
+				},
+			],
 		}),
 	],
 };
