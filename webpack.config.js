@@ -38,7 +38,7 @@ module.exports = {
 				{ from: "./prisma/schema.prisma" }, // without this the prisma generate above will not work
 				{
 					from: "./node_modules/.prisma/client/query-engine-rhel-openssl-1.0.x",
-				},
+				}, // client 설치 시에 자동으로 생성되는 client의 binary 파일을 사용가능 하도록 복사한다.
 			],
 		}),
 	],
