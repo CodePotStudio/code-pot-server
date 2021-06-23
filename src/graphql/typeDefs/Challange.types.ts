@@ -12,6 +12,7 @@ const typeDefs = gql`
 	type Challange {
 		id: Int!
 		thumbnail: String!
+		name: String!
 		remarks: String!
 		status: ChallangeStatus!
 		startDateTime: Date!

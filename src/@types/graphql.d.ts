@@ -19,6 +19,7 @@ export type Challange = {
   __typename?: 'Challange';
   id: Scalars['Int'];
   thumbnail: Scalars['String'];
+  name: Scalars['String'];
   remarks: Scalars['String'];
   status: ChallangeStatus;
   startDateTime: Scalars['Date'];
@@ -228,6 +229,7 @@ export type ResolversParentTypes = {
 export type ChallangeResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Challange'] = ResolversParentTypes['Challange']> = {
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   thumbnail?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   remarks?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   status?: Resolver<ResolversTypes['ChallangeStatus'], ParentType, ContextType>;
   startDateTime?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
