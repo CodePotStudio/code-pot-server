@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { User } from "./user";
+import { User } from "./graphql";
 
 export interface Context {
 	prisma: PrismaClient;

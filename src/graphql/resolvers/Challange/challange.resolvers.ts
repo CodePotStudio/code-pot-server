@@ -15,7 +15,7 @@ const query: Resolvers = {
 	},
 	Mutation: {
 		enrollChallange: async (_, { challangeId }, { prisma, user }) => {
-			const userId = user.id;
+			const userId = user!.id;
 			return await prisma.enroll.create({
 				data: {
 					userId,
