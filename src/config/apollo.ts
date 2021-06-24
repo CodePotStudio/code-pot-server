@@ -47,6 +47,7 @@ async function getUser(headers: LambdaHeader) {
 			return user;
 		} catch (error) {
 			console.log(error);
+			return null;
 		}
 	} else {
 		return null;
