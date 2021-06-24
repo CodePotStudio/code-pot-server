@@ -38,17 +38,27 @@ export type ChallangeStatus =
   | 'CLOSED';
 
 
-export type Mutation = {
-  __typename?: 'Mutation';
-  registerRefundAccount: User;
-  activateUser: User;
-  createUser: CreateUserResponse;
+export type Enroll = {
+  __typename?: 'Enroll';
+  id: Scalars['Int'];
+  userId: Scalars['Int'];
+  challangeId: Scalars['Int'];
+  status: EnrollStatus;
+  createdAt: Scalars['Date'];
+  updatedAt: Scalars['Date'];
 };
 
+export type EnrollStatus =
+  | 'PROCESSING'
+  | 'COMPLETED'
+  | 'CANCELED';
 
-export type MutationRegisterRefundAccountArgs = {
-  bankCode: Scalars['String'];
-  bankAccount: Scalars['String'];
+export type Mutation = {
+  __typename?: 'Mutation';
+  activateUser: User;
+  createUser: CreateUserResponse;
+  enrollChallange: Enroll;
+  registerRefundAccount: User;
 };
 
 
@@ -62,6 +72,17 @@ export type MutationCreateUserArgs = {
   email: Scalars['String'];
   avatar?: Maybe<Scalars['String']>;
   githubId: Scalars['Int'];
+};
+
+
+export type MutationEnrollChallangeArgs = {
+  challangeId: Scalars['Int'];
+};
+
+
+export type MutationRegisterRefundAccountArgs = {
+  bankCode: Scalars['String'];
+  bankAccount: Scalars['String'];
 };
 
 export type Profile = {
@@ -199,6 +220,8 @@ export type ResolversTypes = {
   ChallangeFilter: ChallangeFilter;
   ChallangeStatus: ChallangeStatus;
   Date: ResolverTypeWrapper<Scalars['Date']>;
+  Enroll: ResolverTypeWrapper<Enroll>;
+  EnrollStatus: EnrollStatus;
   Mutation: ResolverTypeWrapper<{}>;
   Profile: ResolverTypeWrapper<Profile>;
   Query: ResolverTypeWrapper<{}>;
@@ -216,6 +239,7 @@ export type ResolversParentTypes = {
   String: Scalars['String'];
   ChallangeFilter: ChallangeFilter;
   Date: Scalars['Date'];
+  Enroll: Enroll;
   Mutation: {};
   Profile: Profile;
   Query: {};
@@ -241,10 +265,21 @@ export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
   name: 'Date';
 }
 
+export type EnrollResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Enroll'] = ResolversParentTypes['Enroll']> = {
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  userId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  challangeId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  status?: Resolver<ResolversTypes['EnrollStatus'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  updatedAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  registerRefundAccount?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationRegisterRefundAccountArgs, 'bankCode' | 'bankAccount'>>;
   activateUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationActivateUserArgs, 'mobile' | 'name'>>;
   createUser?: Resolver<ResolversTypes['createUserResponse'], ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'email' | 'githubId'>>;
+  enrollChallange?: Resolver<ResolversTypes['Enroll'], ParentType, ContextType, RequireFields<MutationEnrollChallangeArgs, 'challangeId'>>;
+  registerRefundAccount?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationRegisterRefundAccountArgs, 'bankCode' | 'bankAccount'>>;
 };
 
 export type ProfileResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Profile'] = ResolversParentTypes['Profile']> = {
@@ -290,6 +325,7 @@ export type MeResolvers<ContextType = Context, ParentType extends ResolversParen
 export type Resolvers<ContextType = Context> = {
   Challange?: ChallangeResolvers<ContextType>;
   Date?: GraphQLScalarType;
+  Enroll?: EnrollResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Profile?: ProfileResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;

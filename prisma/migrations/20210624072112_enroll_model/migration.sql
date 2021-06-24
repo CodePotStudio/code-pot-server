@@ -1,0 +1,20 @@
+-- CreateEnum
+CREATE TYPE "EnrollStatus" AS ENUM ('PROCESSING', 'COMPLETED', 'CANCELED');
+
+-- CreateTable
+CREATE TABLE "Enroll" (
+    "id" SERIAL NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "challangeId" INTEGER NOT NULL,
+    "status" "EnrollStatus" NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    PRIMARY KEY ("id")
+);
+
+-- AddForeignKey
+ALTER TABLE "Enroll" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Enroll" ADD FOREIGN KEY ("challangeId") REFERENCES "Challange"("id") ON DELETE CASCADE ON UPDATE CASCADE;

@@ -13,6 +13,17 @@ const query: Resolvers = {
 			return await prisma.challange.findUnique({ where: { id } });
 		},
 	},
+	Mutation: {
+		enrollChallange: async (_, { challangeId }, { prisma, user }) => {
+			const userId = user.id;
+			return await prisma.enroll.create({
+				data: {
+					userId,
+					challangeId,
+				},
+			});
+		},
+	},
 };
 
 export default query;

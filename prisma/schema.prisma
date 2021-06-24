@@ -29,6 +29,7 @@ model User {
   RBankCode    String?
   RBankAccount String?
   profile      Profile?
+  Enroll       Enroll[]
 }
 
 model Challange {
@@ -41,6 +42,7 @@ model Challange {
   status        ChallangeStatus
   startDateTime DateTime
   endDateTime   DateTime
+  Enroll        Enroll[]
 }
 
 enum ChallangeStatus {
@@ -49,4 +51,23 @@ enum ChallangeStatus {
   RECRUITMENT_CLOSED
   INPROGRESS
   CLOSED
+}
+
+enum EnrollStatus {
+  PROCESSING
+  COMPLETED
+  CANCELED
+}
+
+model Enroll {
+  id          Int          @id @default(autoincrement())
+  userId      Int
+  challangeId Int
+  user        User         @relation(fields: [userId], references: [id])
+  challange   Challange    @relation(fields: [challangeId], references: [id])
+  status      EnrollStatus @default(PROCESSING)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @default(now())
+
+  @@unique([userId, challangeId])
 }

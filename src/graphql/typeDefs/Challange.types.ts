@@ -27,6 +27,10 @@ const typeDefs = gql`
 		findChallanges(filter: ChallangeFilter): [Challange!]!
 		getChallange(id: Int!): Challange
 	}
+
+	type Mutation {
+		enrollChallange(challangeId: Int!): Enroll!
+	}
 `;
 
 export default typeDefs;
