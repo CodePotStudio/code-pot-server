@@ -13,8 +13,8 @@ export const isAuthenticated = rule({ cache: "contextual" })(
 
 // 계정 활성화 여부
 export const isActivated = rule({ cache: "contextual" })(
-	async (_, __, { user: { isActivated } }: Context, ___) => {
-		return isActivated
+	async (_, __, { user }: Context, ___) => {
+		return user!.isActive
 			? true
 			: new ApolloError("비활성화 계정입니다.", "ACCOUNT_NEED_ACTIVATED");
 	}
