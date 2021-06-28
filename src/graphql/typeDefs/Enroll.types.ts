@@ -17,12 +17,12 @@ const typeDefs = gql`
 		challange: Challange
 	}
 
-	input EnrollFillter {
-		userId: Int!
+	input MyEnrollFillter {
+		challangeStatuses: [ChallangeStatus!]
 	}
 
 	type Query {
-		findEnrolls(filter: EnrollFillter!): [Enroll!]
+		myEnrolls(filter: MyEnrollFillter!): [Enroll!]
 	}
 `;
 

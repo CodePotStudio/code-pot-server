@@ -49,10 +49,6 @@ export type Enroll = {
   challange?: Maybe<Challange>;
 };
 
-export type EnrollFillter = {
-  userId: Scalars['Int'];
-};
-
 export type EnrollStatus =
   | 'PROCESSING'
   | 'COMPLETED'
@@ -90,6 +86,10 @@ export type MutationRegisterRefundAccountArgs = {
   bankAccount: Scalars['String'];
 };
 
+export type MyEnrollFillter = {
+  challangeStatuses?: Maybe<Array<ChallangeStatus>>;
+};
+
 export type Profile = {
   __typename?: 'Profile';
   avatar?: Maybe<Scalars['String']>;
@@ -99,9 +99,9 @@ export type Profile = {
 export type Query = {
   __typename?: 'Query';
   findChallanges: Array<Challange>;
-  findEnrolls?: Maybe<Array<Enroll>>;
   getChallange?: Maybe<Challange>;
   me?: Maybe<Me>;
+  myEnrolls?: Maybe<Array<Enroll>>;
 };
 
 
@@ -110,13 +110,13 @@ export type QueryFindChallangesArgs = {
 };
 
 
-export type QueryFindEnrollsArgs = {
-  filter: EnrollFillter;
+export type QueryGetChallangeArgs = {
+  id: Scalars['Int'];
 };
 
 
-export type QueryGetChallangeArgs = {
-  id: Scalars['Int'];
+export type QueryMyEnrollsArgs = {
+  filter: MyEnrollFillter;
 };
 
 export type User = {
@@ -232,9 +232,9 @@ export type ResolversTypes = {
   ChallangeStatus: ChallangeStatus;
   Date: ResolverTypeWrapper<Scalars['Date']>;
   Enroll: ResolverTypeWrapper<Enroll>;
-  EnrollFillter: EnrollFillter;
   EnrollStatus: EnrollStatus;
   Mutation: ResolverTypeWrapper<{}>;
+  MyEnrollFillter: MyEnrollFillter;
   Profile: ResolverTypeWrapper<Profile>;
   Query: ResolverTypeWrapper<{}>;
   User: ResolverTypeWrapper<User>;
@@ -252,8 +252,8 @@ export type ResolversParentTypes = {
   ChallangeFilter: ChallangeFilter;
   Date: Scalars['Date'];
   Enroll: Enroll;
-  EnrollFillter: EnrollFillter;
   Mutation: {};
+  MyEnrollFillter: MyEnrollFillter;
   Profile: Profile;
   Query: {};
   User: User;
@@ -304,9 +304,9 @@ export type ProfileResolvers<ContextType = Context, ParentType extends Resolvers
 
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   findChallanges?: Resolver<Array<ResolversTypes['Challange']>, ParentType, ContextType, RequireFields<QueryFindChallangesArgs, 'filter'>>;
-  findEnrolls?: Resolver<Maybe<Array<ResolversTypes['Enroll']>>, ParentType, ContextType, RequireFields<QueryFindEnrollsArgs, 'filter'>>;
   getChallange?: Resolver<Maybe<ResolversTypes['Challange']>, ParentType, ContextType, RequireFields<QueryGetChallangeArgs, 'id'>>;
   me?: Resolver<Maybe<ResolversTypes['me']>, ParentType, ContextType>;
+  myEnrolls?: Resolver<Maybe<Array<ResolversTypes['Enroll']>>, ParentType, ContextType, RequireFields<QueryMyEnrollsArgs, 'filter'>>;
 };
 
 export type UserResolvers<ContextType = Context, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {

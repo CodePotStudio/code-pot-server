@@ -12,15 +12,28 @@ const query: Resolvers = {
 		},
 	},
 	Query: {
-		findEnrolls: async (_, { filter }, { prisma }) => {
-			const { userId } = filter;
+		myEnrolls: async (_, { filter }, { prisma, user }) => {
+			const { challangeStatuses } = filter;
 			let andWhere: Prisma.EnrollWhereInput[] = [];
 
-			if (userId) {
+			if (user) {
 				andWhere.push({
-					userId,
+					userId: user.id,
 				});
 			}
+
+			if (challangeStatuses) {
+				andWhere.push({
+					challange: {
+						is: {
+							status: {
+								in: challangeStatuses,
+							},
+						},
+					},
+				});
+			}
+
 			return await prisma.enroll.findMany({
 				where: {
 					AND: andWhere,
