@@ -27,7 +27,7 @@ export type Challange = {
 };
 
 export type ChallangeFilter = {
-  status: Array<ChallangeStatus>;
+  statuses?: Maybe<Array<ChallangeStatus>>;
 };
 
 export type ChallangeStatus =
@@ -100,7 +100,7 @@ export type Query = {
 
 
 export type QueryFindChallangesArgs = {
-  filter?: Maybe<ChallangeFilter>;
+  filter: ChallangeFilter;
 };
 
 
@@ -289,7 +289,7 @@ export type ProfileResolvers<ContextType = Context, ParentType extends Resolvers
 };
 
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  findChallanges?: Resolver<Array<ResolversTypes['Challange']>, ParentType, ContextType, RequireFields<QueryFindChallangesArgs, never>>;
+  findChallanges?: Resolver<Array<ResolversTypes['Challange']>, ParentType, ContextType, RequireFields<QueryFindChallangesArgs, 'filter'>>;
   getChallange?: Resolver<Maybe<ResolversTypes['Challange']>, ParentType, ContextType, RequireFields<QueryGetChallangeArgs, 'id'>>;
   me?: Resolver<Maybe<ResolversTypes['me']>, ParentType, ContextType>;
 };

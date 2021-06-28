@@ -20,11 +20,11 @@ const typeDefs = gql`
 	}
 
 	input ChallangeFilter {
-		status: [ChallangeStatus!]!
+		statuses: [ChallangeStatus!]
 	}
 
 	type Query {
-		findChallanges(filter: ChallangeFilter): [Challange!]!
+		findChallanges(filter: ChallangeFilter!): [Challange!]!
 		getChallange(id: Int!): Challange
 	}
 
