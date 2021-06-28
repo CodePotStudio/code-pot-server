@@ -13,7 +13,7 @@ const query: Resolvers = {
 	},
 	Query: {
 		myEnrolls: async (_, { filter }, { prisma, user }) => {
-			const { challangeStatuses } = filter;
+			const { challangeStatuses, statuses } = filter;
 			let andWhere: Prisma.EnrollWhereInput[] = [];
 
 			if (user) {
@@ -30,6 +30,14 @@ const query: Resolvers = {
 								in: challangeStatuses,
 							},
 						},
+					},
+				});
+			}
+
+			if (statuses) {
+				andWhere.push({
+					status: {
+						in: statuses,
 					},
 				});
 			}

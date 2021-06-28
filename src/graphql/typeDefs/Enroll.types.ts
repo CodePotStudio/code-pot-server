@@ -19,6 +19,7 @@ const typeDefs = gql`
 
 	input MyEnrollFillter {
 		challangeStatuses: [ChallangeStatus!]
+		statuses: [EnrollStatus!]
 	}
 
 	type Query {

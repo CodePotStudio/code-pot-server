@@ -88,6 +88,7 @@ export type MutationRegisterRefundAccountArgs = {
 
 export type MyEnrollFillter = {
   challangeStatuses?: Maybe<Array<ChallangeStatus>>;
+  statuses?: Maybe<Array<EnrollStatus>>;
 };
 
 export type Profile = {
