@@ -27,7 +27,7 @@ export type Challange = {
 };
 
 export type ChallangeFilter = {
-  status: ChallangeStatus;
+  status: Array<ChallangeStatus>;
 };
 
 export type ChallangeStatus =

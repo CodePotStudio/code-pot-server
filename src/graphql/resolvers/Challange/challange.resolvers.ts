@@ -5,7 +5,7 @@ const query: Resolvers = {
 		findChallanges: async (_, { filter }, { prisma }) => {
 			return await prisma.challange.findMany({
 				where: {
-					...filter,
+					status: { in: filter?.status },
 				},
 			});
 		},

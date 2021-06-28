@@ -20,7 +20,7 @@ const typeDefs = gql`
 	}
 
 	input ChallangeFilter {
-		status: ChallangeStatus!
+		status: [ChallangeStatus!]!
 	}
 
 	type Query {
