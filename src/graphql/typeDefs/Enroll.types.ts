@@ -14,6 +14,15 @@ const typeDefs = gql`
 		status: EnrollStatus!
 		createdAt: Date!
 		updatedAt: Date!
+		challange: Challange
+	}
+
+	input EnrollFillter {
+		userId: Int!
+	}
+
+	type Query {
+		findEnrolls(filter: EnrollFillter!): [Enroll!]
 	}
 `;
 

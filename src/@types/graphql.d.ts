@@ -46,6 +46,11 @@ export type Enroll = {
   status: EnrollStatus;
   createdAt: Scalars['Date'];
   updatedAt: Scalars['Date'];
+  challange?: Maybe<Challange>;
+};
+
+export type EnrollFillter = {
+  userId: Scalars['Int'];
 };
 
 export type EnrollStatus =
@@ -94,6 +99,7 @@ export type Profile = {
 export type Query = {
   __typename?: 'Query';
   findChallanges: Array<Challange>;
+  findEnrolls?: Maybe<Array<Enroll>>;
   getChallange?: Maybe<Challange>;
   me?: Maybe<Me>;
 };
@@ -101,6 +107,11 @@ export type Query = {
 
 export type QueryFindChallangesArgs = {
   filter: ChallangeFilter;
+};
+
+
+export type QueryFindEnrollsArgs = {
+  filter: EnrollFillter;
 };
 
 
@@ -221,6 +232,7 @@ export type ResolversTypes = {
   ChallangeStatus: ChallangeStatus;
   Date: ResolverTypeWrapper<Scalars['Date']>;
   Enroll: ResolverTypeWrapper<Enroll>;
+  EnrollFillter: EnrollFillter;
   EnrollStatus: EnrollStatus;
   Mutation: ResolverTypeWrapper<{}>;
   Profile: ResolverTypeWrapper<Profile>;
@@ -240,6 +252,7 @@ export type ResolversParentTypes = {
   ChallangeFilter: ChallangeFilter;
   Date: Scalars['Date'];
   Enroll: Enroll;
+  EnrollFillter: EnrollFillter;
   Mutation: {};
   Profile: Profile;
   Query: {};
@@ -272,6 +285,7 @@ export type EnrollResolvers<ContextType = Context, ParentType extends ResolversP
   status?: Resolver<ResolversTypes['EnrollStatus'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  challange?: Resolver<Maybe<ResolversTypes['Challange']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -290,6 +304,7 @@ export type ProfileResolvers<ContextType = Context, ParentType extends Resolvers
 
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   findChallanges?: Resolver<Array<ResolversTypes['Challange']>, ParentType, ContextType, RequireFields<QueryFindChallangesArgs, 'filter'>>;
+  findEnrolls?: Resolver<Maybe<Array<ResolversTypes['Enroll']>>, ParentType, ContextType, RequireFields<QueryFindEnrollsArgs, 'filter'>>;
   getChallange?: Resolver<Maybe<ResolversTypes['Challange']>, ParentType, ContextType, RequireFields<QueryGetChallangeArgs, 'id'>>;
   me?: Resolver<Maybe<ResolversTypes['me']>, ParentType, ContextType>;
 };
