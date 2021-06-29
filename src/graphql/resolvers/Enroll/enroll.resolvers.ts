@@ -4,11 +4,13 @@ import { Resolvers } from "../../../@types/graphql";
 const query: Resolvers = {
 	Enroll: {
 		challange: async (parent, _, { prisma }) => {
-			return prisma.challange.findUnique({
-				where: {
-					id: parent.challangeId,
-				},
-			});
+			return prisma.enroll
+				.findUnique({
+					where: {
+						id: parent.id,
+					},
+				})
+				.challange();
 		},
 	},
 	Query: {
