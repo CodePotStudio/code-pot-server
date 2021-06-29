@@ -102,7 +102,7 @@ export type Query = {
   findChallanges: Array<Challange>;
   getChallange?: Maybe<Challange>;
   me?: Maybe<Me>;
-  myEnrolls?: Maybe<Array<Enroll>>;
+  myEnrolls: Array<Enroll>;
 };
 
 
@@ -307,7 +307,7 @@ export type QueryResolvers<ContextType = Context, ParentType extends ResolversPa
   findChallanges?: Resolver<Array<ResolversTypes['Challange']>, ParentType, ContextType, RequireFields<QueryFindChallangesArgs, 'filter'>>;
   getChallange?: Resolver<Maybe<ResolversTypes['Challange']>, ParentType, ContextType, RequireFields<QueryGetChallangeArgs, 'id'>>;
   me?: Resolver<Maybe<ResolversTypes['me']>, ParentType, ContextType>;
-  myEnrolls?: Resolver<Maybe<Array<ResolversTypes['Enroll']>>, ParentType, ContextType, RequireFields<QueryMyEnrollsArgs, 'filter'>>;
+  myEnrolls?: Resolver<Array<ResolversTypes['Enroll']>, ParentType, ContextType, RequireFields<QueryMyEnrollsArgs, 'filter'>>;
 };
 
 export type UserResolvers<ContextType = Context, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {

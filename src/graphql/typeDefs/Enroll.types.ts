@@ -23,7 +23,7 @@ const typeDefs = gql`
 	}
 
 	type Query {
-		myEnrolls(filter: MyEnrollFillter!): [Enroll!]
+		myEnrolls(filter: MyEnrollFillter!): [Enroll!]!
 	}
 `;
 
