@@ -4,7 +4,6 @@
 
 - [Code Pot Server](#code-pot-server)
   - [Table of Contents](#table-of-contents)
-  - [General Information](#general-information)
   - [Technologies Used](#technologies-used)
   - [Setup](#setup)
     - [install package](#install-package)
@@ -48,10 +47,10 @@
 ### deploy to dev, prd
 
 ```
-yarn deploy:dev
-yarn deploy:prd
+  yarn deploy:dev
+  yarn deploy:prd
 ```
 
 ## Contact
 
-Created by [@alwaysfun2183](https://toycrane.medium.com/) - feel free to contact me!
+Created by [@alwaysfun2183](https://toycrane.medium.com/)
