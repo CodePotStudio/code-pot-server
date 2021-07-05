@@ -5,6 +5,7 @@ export const permissions = shield(
 	{
 		Query: {
 			me: isAuthenticated,
+			myEnrolls: isAuthenticated,
 		},
 		Mutation: {
 			activateUser: not(isActivated),

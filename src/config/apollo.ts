@@ -58,6 +58,7 @@ const ApolloConfig: Config = {
 	schema: applyMiddleware(schema, permissions),
 	context: setContext,
 	plugins: [customHeadersPlugin],
+	debug: environment.env === "local" ? true : false,
 	playground: {
 		endpoint: "/graphql",
 		settings: {

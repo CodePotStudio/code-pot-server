@@ -1,11 +1,22 @@
+import { Prisma } from ".prisma/client";
 import { Resolvers } from "../../../@types/graphql";
 
 const query: Resolvers = {
 	Query: {
 		findChallanges: async (_, { filter }, { prisma }) => {
+			const { statuses } = filter;
+			let andWhere: Prisma.ChallangeWhereInput[] = [];
+
+			if (statuses) {
+				andWhere.push({
+					status: {
+						in: statuses,
+					},
+				});
+			}
 			return await prisma.challange.findMany({
 				where: {
-					...filter,
+					AND: andWhere,
 				},
 			});
 		},

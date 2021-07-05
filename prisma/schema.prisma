@@ -42,7 +42,7 @@ model Challange {
   status        ChallangeStatus
   startDateTime DateTime
   endDateTime   DateTime
-  Enroll        Enroll[]
+  enrolls       Enroll[]
 }
 
 enum ChallangeStatus {

@@ -14,6 +14,16 @@ const typeDefs = gql`
 		status: EnrollStatus!
 		createdAt: Date!
 		updatedAt: Date!
+		challange: Challange
+	}
+
+	input MyEnrollFillter {
+		challangeStatuses: [ChallangeStatus!]
+		statuses: [EnrollStatus!]
+	}
+
+	type Query {
+		myEnrolls(filter: MyEnrollFillter!): [Enroll!]!
 	}
 `;
 
